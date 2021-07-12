@@ -1,5 +1,5 @@
 const express = require("express");
-const debug = require("debug")("vacunas:servidor:init");
+const debug = require("debug")("vacunasApp:servidor:init");
 const { chalk, errorServidor } = require("./errores");
 
 const app = express();

@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const debug = require("debug")("vacunas:servidor:errores");
+const debug = require("debug")("vacunasApp:servidor:errores");
 
 const errorServidor = (error, puerto) => {
   debug(chalk.redBright.bold("El servidor no se a podido levantar "));

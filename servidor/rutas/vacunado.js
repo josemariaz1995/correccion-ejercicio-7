@@ -1,3 +1,5 @@
+const debug = require("debug")("vacunasApp:servidor:rutas:vacunado");
+const chalk = require("chalk");
 const express = require("express");
 const { getCentrosVacunacion } = require("../../db/controladores/centros");
 const {
@@ -32,9 +34,25 @@ router.get("/ciudad/persona/:dni", async (req, res, next) => {
 
 // Para crear una persona vacunada
 router.post("/persona", async (req, res, next) => {
-  const {dni, idCentro, idVacuna, primeraDosis, segundaDosis}= req.body;
-  const creacionRegistro = await crearPersonaVacunada(dni, idCentro, idVacuna, primeraDosis, segundaDosis);
-  res.status(204).json(creacionRegistro);
+  try {
+    const { dni, idCentro, idVacuna, primeraDosis, segundaDosis } = req.body;
+
+    const creacionRegistro = await crearPersonaVacunada(
+      dni,
+      idCentro,
+      idVacuna,
+      primeraDosis,
+      segundaDosis
+    );
+
+    if (!creacionRegistro) return res.status(409).json({});
+
+    res.status(201).json(creacionRegistro);
+  } catch (error) {
+    debug(chalk.red("Ha habido un error creando la persona"));
+    res.status(409).json({ error: true, mensaje: error.message });
+    return next(error);
+  }
 });
 
 // Para modificar una persona vacunada

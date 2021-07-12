@@ -60,7 +60,7 @@ router.put("/persona/:idPersona", async (req, res, next) => {
   const { idPersona } = req.params;
   const personaModificada = await modificarPersonaVacunada(idPersona, req.body);
   if (!personaModificada) return res.status(404).json({});
-  res.status(204).json(personaModificada);
+  res.json(personaModificada);
 });
 
 // Para borrar una persona vacunada

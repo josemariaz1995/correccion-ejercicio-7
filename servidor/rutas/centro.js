@@ -1,5 +1,5 @@
 const express = require("express");
-const { getCentrosVacunacion } = require("../../mongo/controladores/ciudad");
+const { getCentrosVacunacion } = require("../../db/controladores/centros");
 
 const router = express.Router();
 

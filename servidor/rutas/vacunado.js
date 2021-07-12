@@ -1,13 +1,13 @@
 const express = require("express");
-const { getCentrosVacunacion } = require("../../mongo/controladores/ciudad");
-const {
-  anyadirVacunaApersona,
-  eliminarRegistroPersona,
-  modificarPersonaVacunada,
-  crearRegistroPersona,
-  listarPersonaPorDni,
-  listarPersonasVacunadasCiudad,
-} = require("../../mongo/controladores/persona");
+const { getCentrosVacunacion } = require("../../db/controladores/centros");
+// const {
+//   anyadirVacunaApersona,
+//   eliminarRegistroPersona,
+//   modificarPersonaVacunada,
+//   crearRegistroPersona,
+//   listarPersonaPorDni,
+//   listarPersonasVacunadasCiudad,
+// } = require("../../mongo/controladores/persona");
 
 const router = express.Router();
 

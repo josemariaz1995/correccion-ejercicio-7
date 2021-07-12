@@ -5,7 +5,12 @@ const listarCentros = async (nombreCiudad) => {
   const ciudad = await Ciudad.findOne({
     nombre: nombreCiudad,
   }).populate("puntosVacunacion");
-  return ciudad.puntosVacunacion;
+  debugger;
+  return ciudad?.puntosVacunacion;
+};
+const getCentrosVacunacion = async (idCiudad) => {
+  const { puntosVacunacion } = await Ciudad.findById(idCiudad).populate("puntosVacunacion");
+  return puntosVacunacion;
 };
 
 const crearCentros = async () => {
@@ -48,4 +53,5 @@ const crearCentros = async () => {
 module.exports = {
   listarCentros,
   crearCentros,
+  getCentrosVacunacion,
 };

@@ -1,9 +1,7 @@
 const Persona = require("../modelos/Persona");
 
 const listarPersonaPorDni = async (dni) => {
-  const persona = await Persona.find()
-    .where("dni")
-    .eq(dni.toUpperCase());
+  const persona = await Persona.find().where("dni").eq(dni.toUpperCase());
   return persona;
 };
 const modificarPersonaVacunada = async (id, modificaciones) => {
@@ -44,7 +42,7 @@ const crearPersonaVacunada = async (
   if (segundaDosis) {
     persona.dosis.push(segundaDosis);
   }
-  persona.save();
+  await persona.save();
   return persona;
 };
 

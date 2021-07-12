@@ -1,13 +1,14 @@
 const express = require("express");
 const { getCentrosVacunacion } = require("../../db/controladores/centros");
-// const {
-//   anyadirVacunaApersona,
-//   eliminarRegistroPersona,
-//   modificarPersonaVacunada,
-//   crearRegistroPersona,
-//   listarPersonaPorDni,
-//   listarPersonasVacunadasCiudad,
-// } = require("../../mongo/controladores/persona");
+const {
+  anyadirVacunaApersona,
+  eliminarRegistroPersona,
+  modificarPersonaVacunada,
+  crearRegistroPersona,
+  listarPersonaPorDni,
+  listarPersonasVacunadasCiudad,
+  crearPersonaVacunada,
+} = require("../../db/controladores/personas");
 
 const router = express.Router();
 
@@ -31,8 +32,8 @@ router.get("/ciudad/persona/:dni", async (req, res, next) => {
 
 // Para crear una persona vacunada
 router.post("/persona", async (req, res, next) => {
-  const creacionRegistro = await crearRegistroPersona(req.body);
-  if (!creacionRegistro) return res.status(409).json({});
+  const {dni, idCentro, idVacuna, primeraDosis, segundaDosis}= req.body;
+  const creacionRegistro = await crearPersonaVacunada(dni, idCentro, idVacuna, primeraDosis, segundaDosis);
   res.status(204).json(creacionRegistro);
 });
 

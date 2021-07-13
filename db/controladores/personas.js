@@ -60,13 +60,10 @@ const personasVacunadasPorCiudad = async (id) => {
   const nombreCentro = await ciudad.puntosVacunacion.map(
     (centro) => centro.nombre
   );
-  const personaCentro = await personas.map(
-    (persona) => persona.centroVacunacion.nombre
-  );
-  const contador = personaCentro.reduce((contador, centro) => {
+  const contador = personas.reduce((contador, persona) => {
     debugger;
-    if (nombreCentro.includes(centro)) {
-      return contador + 1;
+    if (nombreCentro.includes(persona.centroVacunacion.nombre)) {
+      return contador + persona.dosis.length;
     } else {
       return contador;
     }

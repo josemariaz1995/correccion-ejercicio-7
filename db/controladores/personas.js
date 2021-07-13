@@ -1,3 +1,4 @@
+const Ciudad = require("../modelos/Ciudad");
 const Persona = require("../modelos/Persona");
 
 const listarPersonaPorDni = async (dni) => {
@@ -45,8 +46,36 @@ const crearPersonaVacunada = async (
   await persona.save();
   return persona;
 };
+const personasVacunadasPorCiudad = async (id) => {
+  const ciudad = await Ciudad.findById(id).populate({
+    path: "puntosVacunacion",
+    model: "CentroVacunacion",
+    select: "nombre -_id",
+  });
+  const personas = await Persona.find().populate({
+    path: "centroVacunacion",
+    model: "CentroVacunacion",
+    select: "nombre -_id",
+  });
+  const nombreCentro = await ciudad.puntosVacunacion.map(
+    (centro) => centro.nombre
+  );
+  const personaCentro = await personas.map(
+    (persona) => persona.centroVacunacion.nombre
+  );
+  const contador = personaCentro.reduce((contador, centro) => {
+    debugger;
+    if (nombreCentro.includes(centro)) {
+      return contador + 1;
+    } else {
+      return contador;
+    }
+  }, 0);
+  return contador;
+};
 
 module.exports = {
+  personasVacunadasPorCiudad,
   crearPersonaVacunada,
   eliminarRegistroPersona,
   modificarPersonaVacunada,

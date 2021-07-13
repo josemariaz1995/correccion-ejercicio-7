@@ -11,7 +11,7 @@ router.get("/ciudad/:idCiudad", async (req, res, next) => {
 });
 
 // Devuelve informacion sobre un centro de vacunacion
-router.get("/ciudad/:idCentro", (req, res, next) => {
+router.get("/centro/:idCentro", (req, res, next) => {
   const { idCentro } = req.params;
 });
 

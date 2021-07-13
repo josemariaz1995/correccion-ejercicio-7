@@ -22,7 +22,7 @@ router.get("/ciudad/:idCiudad", async (req, res, next) => {
 });
 
 // Devuelve un array con las personas que se han vacunado en un centro
-router.get("/ciudad/centro/:idCentro", (req, res, next) => {});
+router.get("/centro/:idCentro", (req, res, next) => {});
 
 // Devuelve la informacion de una persona vacunada a partir de un DNI
 router.get("/ciudad/persona/:dni", async (req, res, next) => {
